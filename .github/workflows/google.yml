@@ -1,0 +1,20 @@
+name: Matrix Workflow with Parameters from Lists
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [development, staging, production]
+        version: [1.0, 2.0, 3.0]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run with matrix parameters
+        run: echo "Running with Environment=${{ matrix.environment }} and Version=${{ matrix.version }}"
